@@ -12,7 +12,9 @@ Vi har gjort klar litt kode for deg. Trykk på spillet for å teste det litt.
 Litt tilfeldigheter gjør spillet mer spennende.
 La oss gjøre det slik at bilen starter på et tilfeldig sted.
 
-Hent en **place mySprite on top of random**-blokk fra Scene-menyen, og legg den inn nederst i programmet.
+Hent en ``||scene:place mySprite on top of random||``-blokk fra ``||scene:Scene||``-menyen, og legg den inn nederst i programmet.
+
+Trykk så på den grårutete firkanten for å bestemme hvilken del av kartet du skal dukke opp på.
 
 Husk at du kan trykke på lyspære-knappen for å se fasit.
 
@@ -107,16 +109,18 @@ tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
 ## Utforsk kartet (tilemap)
 Huset **("hjem")** skal bli stedet du må kjøre til for å vinne spillet.
 
-Hvis du klikker på **tilemap-** og beveger musen over kartet, står koordinatene du peker på nederst på skjermen.
+Hvis du klikker på firkanten i ``||scene:tilemap||``-blokken og beveger musen over kartet, står koordinatene du peker på nederst på skjermen.
 
 Velg ut et sted på kartet du vil at huset skal være, og noter deg koordinatene (f.eks. "31, 27")
 
+
+
 ## Plasser huset
 
-Hent en **"place mySprite on top of tilemap col 0 row 0"**, og plasser den nederst i programmet.
-Klikk på** "mySprite" **i denne nye blokken, og endre til **"hjem".**
+Hent en ``||scene:place mySprite on top of tilemap col 0 row 0||``, og plasser den nederst i programmet.
+Klikk på ``||variables:mySprite||`` i denne nye blokken, og endre til ``||variables:hjem||``.
 
-Klikk på tallene og bytt ut med koordinatene du har lyst til.
+Klikk på tallene og bytt ut med de koordinatene du bestemte deg for i forrige steg.
 
 
 
@@ -211,9 +215,9 @@ tiles.placeOnTile(hjem, tiles.getTileLocation(31, 27))
 
 Verdenen vår er ganske øde, nå skal vi begynne å fylle den med ting.
 
-Vi begynner med å lage en ny type Sprite som vi etterhvert skal få poeng for å plukke opp. 
+Vi begynner med å lage en ny type **Sprite** som vi etterhvert skal få poeng for å plukke opp. 
 
-Hent en** "set mySprite2 to sprite of kind Player"**-blokk fra** Sprite**-menyen og legg inn i programmet.
+Hent en ``||sprites:set mySprite2 to sprite of kind Player||``-blokk fra ``||sprites:Sprite||``-menyen og legg inn i programmet.
 
 Du kan trykke på den grå firkanten for å tegne den slik du vil eller finne en du liker i galleriet.
 
@@ -334,8 +338,8 @@ mySprite2 = sprites.create(img`
 
 ## Lag et bra navn
 
-Gi den nye Spriten gjerne et bedre navn enn mySprite2, f.eks. **"kraft"**, eller noe som matcher tegningen du har valgt.
-Trykk også på den hvite pilen der det står **Player **og skift til** Drivstoff**-typen.
+Gi den nye Spriten gjerne et bedre navn enn ``||variables:mySprite2||``, f.eks. ``||variables:kraft||``, eller noe som matcher tegningen du har valgt.
+Trykk også på den hvite pilen der det står ``||sprites:Player||`` og skift til ``||sprites:Drivstoff||``-typen.
 
 
 ```blocks
@@ -451,7 +455,7 @@ kraft = sprites.create(img`
 
 ## Repeat-blokken
 
-Finn en **repeat**-blokk i **loop**-menyen, og legg den inn i programmet slik at den gaper rundt drivstoff-spriten.
+Finn en ``||loops:repeat||``-blokk i ``||loops:loop||``-menyen, og legg den inn i programmet slik at den gaper rundt Drivstoff-spriten.
 Sett den til å gjenta 100 ganger.
 
 
@@ -569,7 +573,10 @@ kraft = sprites.create(img`
 ## Plasser sprites utover
 
 Nå har vi 100 drivstoff-sprites, men alle ligger på samme sted.
-Legg inn en **place on top of random**-blokk i den grønne løkke-blokken, og skift fra** mySprite** til det du kalte drivstoff-spriten.
+
+Legg inn en ``||scene:place mySprite on top of random||``-blokk i den grønne løkke-blokken, og skift fra ``||variables:mySprite||`` til det du kalte drivstoff-spriten.
+
+Trykk på den grårutete firkanten for å velge hvor drivstoff-spritene skal plasseres.
 
 
 ```blocks
@@ -686,7 +693,7 @@ for (let index = 0; index < 100; index++) {
 
 Nå skal vi programmere at det skjer noe når du kjører over en Drivstoff-sprite.
 
-Hent en **on sprite of kind player overlaps...**-blokk i Sprite-menyen, og legg den et sted i programmet ditt utenfor on start. (Over, under, til siden eller hvor som helst.)
+Hent en ``||sprites:on sprite of kind player overlaps...||``-blokk i ``||sprites:Sprites||``-menyen, og legg den et sted i programmet ditt utenfor ``||loops:on start||``-blokken. (Over, under, til siden eller hvor som helst.)
 
 
 ```blocks
@@ -807,7 +814,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherS
 
 ## Velg riktig type Sprite
 
-I Overlap-blokken du nettop laget må du stille den inn slik at den sjekker om en **Player**-sprite berører en** Drivstoff**-sprite. 
+I ``||sprites:...Player overlaps otherSprite...||``-blokken du nettop laget må du stille den inn slik at den sjekker om en **Player**-sprite berører en **Drivstoff**-sprite. 
 Trykk på den hvite pilen i den høyre ovalen for å bytte.
 
 
@@ -929,7 +936,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Drivstoff, function (sprite, oth
 
 ## Poeng 
 
-Vi vil ha poeng når vi berører en Drivstoff-sprite. Hent en **change score-blokk** fra** Info**-menyen.
+Vi vil ha poeng når vi berører en Drivstoff-sprite. Hent en ``||info:change score by 1||``-blokk fra ``||info:Info||``-menyen.
 
 
 ```blocks
@@ -1053,8 +1060,8 @@ info.changeScoreBy(1)
 ## Fjern Sprites 
 
 Vi må også fjerne Drivstoff-spriten når vi får poeng. For å være sikker på at vi kun fjerner den ene som vi tar borti, må vi gjøre to ting.
-Først, finn en **destroy mySprite**-blokk og legg inn under **change score**-blokken.
-Så må du klikke og dra den røde **otherSprite**-ovalen ut av rammen i **overlap**-blokken, og legge inn i stedet for **mySprite** i **Destroy**-blokken.
+Først, finn en ``||sprites:destroy mySprite||``-blokk og legg inn under ``||info:change score||``-blokken.
+Så må du klikke og dra den røde ``||variables:otherSprite||``-ovalen ut av rammen i ``||sprites:overlap||``-blokken, og legge inn i stedet for ``||variables:mySprite||`` i ``||sprites:Destroy||``-blokken.
 
 (Dette steget er litt vanskelig, spør gjerne Viteverten om hjelp).
 
@@ -1182,8 +1189,8 @@ sprites.destroy(otherSprite)
 
 Nå skal vi programmere inn at du vinner spillet når du kommer deg hjem.
 
-Lag en ny **overlap**-blokk, og sett den til å gjelde for at du berører en Mål-sprite.
-Inni denne kan du legge en **game over: WIN-blokk**
+Lag en ny ``||sprites:overlap||``-blokk, og sett den til å gjelde for at du berører en **Mål**-sprite.
+Inni denne kan du legge en ``||game:game over: WIN-blokk||``
 
 
 ```blocks
@@ -1313,7 +1320,256 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Mål, function (sprite, otherSpr
 
 
 
+## En måte å tape - del 1
+Spillet blir veldig kjedelig hvis det ikke også går an å *tape*. 
+Legg en ``||info:set life to 3||`` blokk inn i ``||loops:on start||``, og sett den til å starte med 100 liv.
 
+De 100 livene symboliserer drivstofftanken på bilen. I det neste steget skal vi legge til kode for at tanken gradvis går tom.
+
+
+```blocks
+namespace SpriteKind {
+    export const Drivstoff = SpriteKind.create()
+    export const Mål = SpriteKind.create()
+}
+
+scene.setBackgroundColor(9)
+let mySprite = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . 1 1 1 1 1 1 1 1 . . . . 
+    . . . 1 b 1 1 1 1 1 1 6 1 . . . 
+    . . 1 6 b 1 1 1 1 1 1 6 6 1 . . 
+    . 1 6 6 b b b b b b 1 6 6 9 1 . 
+    . 1 6 1 d d d d d d d b 6 9 1 1 
+    . 1 1 b 6 6 d 6 6 6 d d 9 9 1 1 
+    . 1 d 6 6 6 d 6 6 6 6 d 1 1 1 1 
+    . d d 9 9 9 d 9 9 9 9 9 d 1 1 1 
+    . d d d d d d c d d d c d 1 5 5 
+    . d d d d d d c d d c d d d 1 5 
+    . d d d d d d c c c d d d d d d 
+    . d f f f f d d d d f f f d d d 
+    . . f f f f f d d f f f f f d . 
+    . . . f f f . . . . f f f f . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+controller.moveSprite(mySprite)
+tiles.setCurrentTilemap(tilemap`vestlandet sånn ca`)
+
+scene.cameraFollowSprite(mySprite)
+let hjem = sprites.create(img`
+    ....................e2e22e2e....................
+    .................222eee22e2e222.................
+    ..............222e22e2e22eee22e222..............
+    ...........e22e22eeee2e22e2eeee22e22e...........
+    ........eeee22e22e22e2e22e2e22e22e22eeee........
+    .....222e22e22eeee22e2e22e2e22eeee22e22e222.....
+    ...22eeee22e22e22e22eee22eee22e22e22e22eeee22...
+    4cc22e22e22eeee22e22e2e22e2e22e22eeee22e22e22cc4
+    6c6eee22e22e22e22e22e2e22e2e22e22e22e22e22eee6c6
+    46622e22eeee22e22eeee2e22e2eeee22e22eeee22e22664
+    46622e22e22e22eeee22e2e22e2e22eeee22e22e22e22664
+    4cc22eeee22e22e22e22eee22eee22e22e22e22eeee22cc4
+    6c622e22e22eeee22e22e2e22e2e22e22eeee22e22e226c6
+    466eee22e22e22e22e22e2e22e2e22e22e22e22e22eee664
+    46622e22eeee22e22e22e2e22e2e22e22e22eeee22e22664
+    4cc22e22e22e22e22eeee2e22e2eeee22e22e22e22e22cc4
+    6c622eeee22e22eeee22eee22eee22eeee22e22eeee226c6
+    46622e22e22eeee22e22e2e22e2e22e22eeee22e22e22664
+    466eee22e22e22e22e22e2e22e2e22e22e22e22e22eee664
+    4cc22e22eeee22e22e22e2e22e2e22e22e22eeee22e22cc4
+    6c622e22e22e22e22e22eee22eee22e22e22e22e22e226c6
+    46622eeee22e22e22eeecc6666cceee22e22e22eeee22664
+    46622e22e22e22eeecc6666666666cceee22e22e22e22664
+    4cceee22e22eeecc66666cccccc66666cceee22e22eeecc4
+    6c622e22eeecc66666cc64444446cc66666cceee22e226c6
+    46622e22cc66666cc64444444444446cc66666cc22e22664
+    46622cc6666ccc64444444444444444446ccc6666cc22664
+    4ccc6666ccc6444bcc666666666666ccb4446ccc6666ccc4
+    cccccccc6666666cb44444444444444bc6666666cccccccc
+    64444444444446c444444444444444444c64444444444446
+    66cb444444444cb411111111111111114bc444444444bc66
+    666cccccccccccd166666666666666661dccccccccccc666
+    6666444444444c116eeeeeeeeeeeeee611c4444444446666
+    666e2222222e4c16e4e44e44e44e44ee61c4e2222222e666
+    666eeeeeeeee4c16e4e44e44e44e44ee61c4eeeeeeeee666
+    666eddddddde4c66f4e4effffffe44ee66c4eddddddde666
+    666edffdffde4c66f4effffffffff4ee66c4edffdffde666
+    666edccdccde4c66f4effffffffffeee66c4edccdccde666
+    666eddddddde4c66f4eeeeeeeeeeeeee66c4eddddddde666
+    c66edffdffde4c66e4e44e44e44e44ee66c4edffdffde66c
+    c66edccdccde4c66e4e44e44e44e44ee66c4edccdccde66c
+    cc66666666664c66e4e44e44e44feeee66c46666666666cc
+    .c66444444444c66e4e44e44e44ffffe66c44444444466c.
+    ..c64eee4eee4c66f4e44e44e44f44fe66c4eee4eee46c..
+    ...c4eee4eee4c66f4e44e44e44effee66c4eee4eee4c...
+    ....644444444c66f4e44e44e44e44ee66c444444446....
+    .....64eee444c66f4e44e44e44e44ee66c444eee46.....
+    ......6ccc666c66e4e44e44e44e44ee66c666ccc6......
+    `, SpriteKind.Mål)
+
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+
+tiles.placeOnTile(hjem, tiles.getTileLocation(40, 43))
+for (let index = 0; index < 100; index++) {
+    kraft = sprites.create(img`
+            ....................
+            ....................
+            ....................
+            ....................
+            ....................
+            ....................
+            .......22...22......
+            ......2322.2222.....
+            ......232222222.....
+            ......222222222.....
+            .......22222b2......
+            ........222b2.......
+            .........222........
+            ..........2.........
+            ....................
+            ....................
+            ....................
+            ....................
+            ....................
+            ....................
+            `, SpriteKind.Drivstoff)
+	tiles.placeOnRandomTile(kraft, sprites.castle.tileGrass1)
+}
+
+info.setLife(100)
+
+
+```
+
+
+
+
+
+## En måte å tape - del 2
+Hent en ``||game:on game update every 500ms||``-blokk og legg ett ledig sted i programmet. Trykk på 500 og velg et litt større tall, f.eks. 1 eller 5 sekund. (*1000 eller 5000 millisekund*)
+
+Inni denne blokken legger du en ``||info:change life by -1||``-blokk, så vil spillet gradvis telle ned fra full tank til 0. 
+
+Test litt forskjellige tall i update-blokken hvis du syns det blir for lett eller for vanskelig å komme deg hjem før tanken går tom. 
+
+```blocks
+namespace SpriteKind {
+    export const Drivstoff = SpriteKind.create()
+    export const Mål = SpriteKind.create()
+}
+
+scene.setBackgroundColor(9)
+let mySprite = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . 1 1 1 1 1 1 1 1 . . . . 
+    . . . 1 b 1 1 1 1 1 1 6 1 . . . 
+    . . 1 6 b 1 1 1 1 1 1 6 6 1 . . 
+    . 1 6 6 b b b b b b 1 6 6 9 1 . 
+    . 1 6 1 d d d d d d d b 6 9 1 1 
+    . 1 1 b 6 6 d 6 6 6 d d 9 9 1 1 
+    . 1 d 6 6 6 d 6 6 6 6 d 1 1 1 1 
+    . d d 9 9 9 d 9 9 9 9 9 d 1 1 1 
+    . d d d d d d c d d d c d 1 5 5 
+    . d d d d d d c d d c d d d 1 5 
+    . d d d d d d c c c d d d d d d 
+    . d f f f f d d d d f f f d d d 
+    . . f f f f f d d f f f f f d . 
+    . . . f f f . . . . f f f f . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+controller.moveSprite(mySprite)
+tiles.setCurrentTilemap(tilemap`vestlandet sånn ca`)
+
+scene.cameraFollowSprite(mySprite)
+let hjem = sprites.create(img`
+    ....................e2e22e2e....................
+    .................222eee22e2e222.................
+    ..............222e22e2e22eee22e222..............
+    ...........e22e22eeee2e22e2eeee22e22e...........
+    ........eeee22e22e22e2e22e2e22e22e22eeee........
+    .....222e22e22eeee22e2e22e2e22eeee22e22e222.....
+    ...22eeee22e22e22e22eee22eee22e22e22e22eeee22...
+    4cc22e22e22eeee22e22e2e22e2e22e22eeee22e22e22cc4
+    6c6eee22e22e22e22e22e2e22e2e22e22e22e22e22eee6c6
+    46622e22eeee22e22eeee2e22e2eeee22e22eeee22e22664
+    46622e22e22e22eeee22e2e22e2e22eeee22e22e22e22664
+    4cc22eeee22e22e22e22eee22eee22e22e22e22eeee22cc4
+    6c622e22e22eeee22e22e2e22e2e22e22eeee22e22e226c6
+    466eee22e22e22e22e22e2e22e2e22e22e22e22e22eee664
+    46622e22eeee22e22e22e2e22e2e22e22e22eeee22e22664
+    4cc22e22e22e22e22eeee2e22e2eeee22e22e22e22e22cc4
+    6c622eeee22e22eeee22eee22eee22eeee22e22eeee226c6
+    46622e22e22eeee22e22e2e22e2e22e22eeee22e22e22664
+    466eee22e22e22e22e22e2e22e2e22e22e22e22e22eee664
+    4cc22e22eeee22e22e22e2e22e2e22e22e22eeee22e22cc4
+    6c622e22e22e22e22e22eee22eee22e22e22e22e22e226c6
+    46622eeee22e22e22eeecc6666cceee22e22e22eeee22664
+    46622e22e22e22eeecc6666666666cceee22e22e22e22664
+    4cceee22e22eeecc66666cccccc66666cceee22e22eeecc4
+    6c622e22eeecc66666cc64444446cc66666cceee22e226c6
+    46622e22cc66666cc64444444444446cc66666cc22e22664
+    46622cc6666ccc64444444444444444446ccc6666cc22664
+    4ccc6666ccc6444bcc666666666666ccb4446ccc6666ccc4
+    cccccccc6666666cb44444444444444bc6666666cccccccc
+    64444444444446c444444444444444444c64444444444446
+    66cb444444444cb411111111111111114bc444444444bc66
+    666cccccccccccd166666666666666661dccccccccccc666
+    6666444444444c116eeeeeeeeeeeeee611c4444444446666
+    666e2222222e4c16e4e44e44e44e44ee61c4e2222222e666
+    666eeeeeeeee4c16e4e44e44e44e44ee61c4eeeeeeeee666
+    666eddddddde4c66f4e4effffffe44ee66c4eddddddde666
+    666edffdffde4c66f4effffffffff4ee66c4edffdffde666
+    666edccdccde4c66f4effffffffffeee66c4edccdccde666
+    666eddddddde4c66f4eeeeeeeeeeeeee66c4eddddddde666
+    c66edffdffde4c66e4e44e44e44e44ee66c4edffdffde66c
+    c66edccdccde4c66e4e44e44e44e44ee66c4edccdccde66c
+    cc66666666664c66e4e44e44e44feeee66c46666666666cc
+    .c66444444444c66e4e44e44e44ffffe66c44444444466c.
+    ..c64eee4eee4c66f4e44e44e44f44fe66c4eee4eee46c..
+    ...c4eee4eee4c66f4e44e44e44effee66c4eee4eee4c...
+    ....644444444c66f4e44e44e44e44ee66c444444446....
+    .....64eee444c66f4e44e44e44e44ee66c444eee46.....
+    ......6ccc666c66e4e44e44e44e44ee66c666ccc6......
+    `, SpriteKind.Mål)
+
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+
+tiles.placeOnTile(hjem, tiles.getTileLocation(40, 43))
+for (let index = 0; index < 100; index++) {
+    kraft = sprites.create(img`
+            ....................
+            ....................
+            ....................
+            ....................
+            ....................
+            ....................
+            .......22...22......
+            ......2322.2222.....
+            ......232222222.....
+            ......222222222.....
+            .......22222b2......
+            ........222b2.......
+            .........222........
+            ..........2.........
+            ....................
+            ....................
+            ....................
+            ....................
+            ....................
+            ....................
+            `, SpriteKind.Drivstoff)
+	tiles.placeOnRandomTile(kraft, sprites.castle.tileGrass1)
+}
+
+info.setLife(100)
+
+game.onUpdateInterval(5000, function () {
+    info.changeLifeBy(-1)
+})
+
+
+
+```
 
 
 
